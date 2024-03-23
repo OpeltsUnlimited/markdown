@@ -45,7 +45,6 @@ def is_UnorderedList(lines):
     for line in lines:
         matches = rxpr.match(line)
         if not matches:
-            print("--- -- -", line)
             return False
     return True
 
