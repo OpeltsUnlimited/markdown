@@ -20,12 +20,12 @@ def markdown_to_html_node(markdown):
             entrys = []
             for line in block.split("\n"):
                 entrys.append(ParentNode("li", [LeafNode(None, line.split(" ",1)[1])]))
-            collect_children.append("ul", entrys)
+            collect_children.append(ParentNode("ul", entrys))
         elif type == BlockTypes.block_type_ordered_list:
             entrys = []
             for line in block.split("\n"):
                 entrys.append(ParentNode("li", [LeafNode(None, line.split(" ",1)[1])]))
-            collect_children.append("ol", entrys)
+            collect_children.append(ParentNode("ol", entrys))
         else: # block_type_paragraph
             collect_children.append(LeafNode("p", block))
             pass
