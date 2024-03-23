@@ -1,3 +1,5 @@
 from textnode import TextNode
 
-print("Hello World")
+from copy_static import my_copy
+
+my_copy("static","public");
