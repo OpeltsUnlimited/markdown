@@ -2,6 +2,8 @@ from split_blocks import markdown_to_blocks
 from block_types import BlockTypes, block_to_block_type
 from parentnode import ParentNode
 from leafnode import LeafNode
+from text_to_textnode import text_to_textnodes
+from text_node_to_html_node import text_node_to_html_node
 
 def markdown_to_html_node(markdown):
     markdown_blocks = markdown_to_blocks(markdown)
@@ -27,6 +29,11 @@ def markdown_to_html_node(markdown):
                 entrys.append(ParentNode("li", [LeafNode(None, line.split(" ",1)[1])]))
             collect_children.append(ParentNode("ol", entrys))
         else: # block_type_paragraph
-            collect_children.append(LeafNode("p", block))
+            entrys = []
+            nodes = text_to_textnodes(block)
+            for node in nodes:
+                entrys.append(text_node_to_html_node(node))
+            collect_children.append(ParentNode("p", entrys))
+            
             pass
     return ParentNode("div", collect_children)
